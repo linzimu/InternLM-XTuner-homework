@@ -16,6 +16,11 @@ from transformers.utils import logging
 
 from tools.transformers.interface import GenerationConfig, generate_interactive
 
+# 使用openxlab下载模型到本地
+from openxlab.model import download
+llm_model_path = "hf_xtuner_internlm"
+download(model_name="linzimu/xtuner_homework2", output=llm_model_path)
+
 logger = logging.get_logger(__name__)
 
 
@@ -26,11 +31,11 @@ def on_btn_click():
 @st.cache_resource
 def load_model():
     model = (
-        AutoModelForCausalLM.from_pretrained("linzimu/xtuner_homework2", trust_remote_code=True)
+        AutoModelForCausalLM.from_pretrained(llm_model_path, trust_remote_code=True)
         .to(torch.bfloat16)
         .cuda()
     )
-    tokenizer = AutoTokenizer.from_pretrained("linzimu/xtuner_homework2", trust_remote_code=True)
+    tokenizer = AutoTokenizer.from_pretrained(llm_model_path, trust_remote_code=True)
     return model, tokenizer
 
 
