@@ -19,7 +19,7 @@ from tools.transformers.interface import GenerationConfig, generate_interactive
 # 使用openxlab下载模型到本地
 from openxlab.model import download
 llm_model_path = "hf_xtuner_internlm"
-download(model_name="linzimu/xtuner_homework2", output=llm_model_path)
+download(model_repo="linzimu/xtuner_homework2", output=llm_model_path)
 
 logger = logging.get_logger(__name__)
 
